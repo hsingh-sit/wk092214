@@ -1,6 +1,5 @@
 <html>
 <body>
-
 <?php
 // Prevent caching
 header("Cache-Control: no-cache, no-store, must-revalidate");
