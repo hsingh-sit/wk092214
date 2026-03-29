@@ -1,25 +1,34 @@
-<?php
-// NO whitespace/spaces before this line!
-// Start session FIRST (before ANY output)
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-// All header/cookie logic here - NO echo/print yet
-if (!isset($_SESSION['authorized']) || $_SESSION['authorized'] !== true) {
-    // Redirect or deny - NO output yet
-    http_response_code(403);
-    exit('You do not have permission to access this page');
-}
-
-// ONLY NOW output HTML/content
-?>
-<!DOCTYPE html>
 <html>
-<head><title>Chase Lab - Authorized</title></head>
 <body>
-<h2>✅ Access Granted</h2>
-<p>Session active. Attack this page with Burp Suite!</p>
-<!-- Your lab content here -->
+
+<?php
+// Prevent caching
+header("Cache-Control: no-cache, no-store, must-revalidate");
+header("Pragma: no-cache");
+header("Expires: 0");
+
+
+// Start a session
+session_unset();
+session_start();
+
+//Get the current Unix epoch timestamp 
+$timestamp = time();
+
+//Set the PHPSESSID=current Unix epoch timestamp 
+header("Set-Cookie: PHPSESSID=$timestamp; path=/");
+
+//Check PHPSESSID
+if(!isset($_COOKIE["PHPSESSID"])) {
+  echo "You do not have permission to access this page.";
+} else {
+	if ($_COOKIE["PHPSESSID"] == "1687226690") {
+		echo "flag{c9ebe607e5b56ca961fbaeda9c54adb1}";
+  	} else {
+		echo "You do not have permission to access this page.";
+  	}
+}
+?>
+    
 </body>
 </html>
