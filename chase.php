@@ -1,5 +1,3 @@
-<html>
-<body>
 <?php
 // Prevent caching
 header("Cache-Control: no-cache, no-store, must-revalidate");
@@ -28,6 +26,8 @@ if(!isset($_COOKIE["PHPSESSID"])) {
   	}
 }
 ?>
-    
+
+<html>
+<body>
 </body>
 </html>
